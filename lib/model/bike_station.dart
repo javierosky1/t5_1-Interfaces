@@ -10,7 +10,7 @@ class BikeStation {
   final int capacity;
   final bool isChargingStation;
   final int geofecedCapacity;
-  final List<String> rentalMethods;
+  final List<dynamic> rentalMethods;
   final bool isVirtualStation;
   final List<dynamic> groups;
   final String obcn;
@@ -45,20 +45,20 @@ class BikeStation {
 
   factory BikeStation.fromJson(Map<String, dynamic> json) {
     return BikeStation(
-      id: (json["station_id"] as num).toInt(), 
+      id: int.parse((json["station_id"] ?? "").toString()), 
       name: (json["name"] ?? "").toString(), 
       config: (json["physical_configuration"] ?? "").toString(), 
       lat: (json["lat"] as num).toDouble(),
       lon: (json["lon"] as num).toDouble(),
-      altitude: (json["altitude"] as num).toDouble(), 
+      altitude: (json["altitude"]?? 0 as num).toDouble(), 
       address: (json["address"] ?? "").toString(), 
-      cp: (json["address"] ?? "").toString(), 
+      cp: (json["post_code"] ?? "").toString(), 
       capacity: (json["capacity"] as num).toInt(), 
-      isChargingStation: (json["capacity"] as bool), 
+      isChargingStation: (json["is_charging_station"] as bool), 
       geofecedCapacity: (json["geofenced_capacity"] as num).toInt(), 
-      rentalMethods: (json["rental_methods"] as List<String>), 
+      rentalMethods: (json["rental_methods"] ?? List.empty() as List<dynamic>), 
       isVirtualStation: (json["is_virtual_station"] as bool), 
-      groups: (json["rental_methods"] as List<dynamic>), 
+      groups: (json["rental_methods"] ?? List.empty() as List<dynamic>), 
       obcn: (json["obcn"] ?? "").toString(), 
       shortName: (json["short_name"] ?? "").toString(), 
       nearbyDistance: (json["nearby_distance"] as num).toDouble(),
@@ -67,12 +67,5 @@ class BikeStation {
       rentalUris: (json["rental_uris"])
     );
 
-    /*
-    {
-      "_bluetooth_id": "59ed",
-      "_ride_code_support": true,
-      "rental_uris": {}
-    },
-    */
   }
 }

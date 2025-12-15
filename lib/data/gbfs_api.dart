@@ -15,10 +15,12 @@ class GbfsApi {
 
     final decoded = jsonDecode(response.body);
 
-    if (decoded is! List) {
+    if (decoded is! Map) {
       throw Exception("Respuesta inesperada");
     }
 
-    return decoded;
+    var returnList = decoded["data"]["stations"];
+
+    return returnList;
   }
 }
