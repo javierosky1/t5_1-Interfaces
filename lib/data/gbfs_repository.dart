@@ -7,22 +7,34 @@ class GbfsRepository {
   GbfsRepository(this.api);
 
   Future<List<BikeStation>> fetchAllBikeStations() async {
-    final list = await api.getStationInfoJson();
-    return list.map((e) => BikeStation.fromJson(e as Map<String, dynamic>)).toList();
+    final info = await api.getStationInfoJson();
+    final status = await api.getStationStatusJson();
+
+    List<BikeStation> returnList = [];
+
+    for (var i = 0; i < info.length; i++) {
+      if (int.parse(info[i]["station_id"]) == int.parse(status[i]["station_id"])) {
+        returnList.add(BikeStation.fromJson(info[i], status[i]));
+      }
+    }
+
+    return returnList;
   }
 
   Future<List<BikeStation>> fetchBikeStations(List<int> ids) async {
-    final list = await api.getStationInfoJson();
-    List<BikeStation> allBikeStations = list.map((e) => BikeStation.fromJson(e as Map<String, dynamic>)).toList();
+    final info = await api.getStationInfoJson();
+    final status = await api.getStationStatusJson();
 
-    List<BikeStation> requestedBikeStations = [];
+    List<BikeStation> returnList = [];
 
-    allBikeStations.forEach((station) {
-      for (var id in ids) {
-        if (station.id == id) requestedBikeStations.add(station);
+    for (var i = 0; i < info.length; i++) {
+      for (var j = 0; j < ids.length; j++) {
+        if (ids[j] == int.parse(info[i]["station_id"]) && int.parse(info[i]["station_id"]) == int.parse(status[i]["station_id"])) {
+          returnList.add(BikeStation.fromJson(info[i], status[i]));
+        }
       }
-    });
+    }
 
-    return requestedBikeStations;
+    return returnList;
   }
 }

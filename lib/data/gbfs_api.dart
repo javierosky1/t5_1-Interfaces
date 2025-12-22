@@ -23,4 +23,24 @@ class GbfsApi {
 
     return returnList;
   }
+
+  Future<List<dynamic>> getStationStatusJson() async {
+    final url = Uri.parse("$_base/station_status");
+
+    final response = await http.get(url);
+
+    if (response.statusCode != 200) {
+      throw Exception('HTTP ${response.statusCode}');
+    }
+
+    final decoded = jsonDecode(response.body);
+
+    if (decoded is! Map) {
+      throw Exception("Respuesta inesperada");
+    }
+
+    var returnList = decoded["data"]["stations"];
+
+    return returnList;
+  }
 }
