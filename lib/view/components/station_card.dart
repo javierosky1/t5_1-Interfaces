@@ -2,11 +2,11 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:t5_1/model/bike_station.dart';
 
-class FavoriteStationCard extends StatelessWidget {
+class StationCard extends StatelessWidget {
 
   final BikeStation bikeStation;
 
-  FavoriteStationCard({super.key, required this.bikeStation});
+  StationCard({super.key, required this.bikeStation});
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +20,16 @@ class FavoriteStationCard extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(bikeStation.name),
+                  Text(bikeStation.name,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 17
+                    ),
+                  ),
                   Text("Capacidad: ${bikeStation.capacity}")
                 ],
               ),
+              SizedBox(height: 20,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
