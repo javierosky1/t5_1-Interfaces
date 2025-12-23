@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:t5_1/view/components/favorite_station_card.dart';
 import 'package:t5_1/view/components/station_card.dart';
 import 'package:t5_1/viewmodel/favorite_station_viewmodel.dart';
 import 'package:t5_1/viewmodel/station_viewmodel.dart';
@@ -43,15 +44,9 @@ class HomePage extends StatelessWidget {
                     else
                       Column(
                         children: favoriteStationViewmodel.favoriteStations.map((station) {
-                          return StationCard(bikeStation: station);
+                          return FavoriteStationCard(bikeStation: station, favoriteStationViewmodel: favoriteStationViewmodel,);
                         },).toList()
                       ),
-                    ElevatedButton(
-                      onPressed: () {
-                        print(favoriteStationViewmodel);
-                      },
-                      child: Text("Botón debug"),
-                    ),
                     SizedBox(height: 20,),
                     Row(
                       children: [
@@ -64,9 +59,10 @@ class HomePage extends StatelessWidget {
                         ),
                       ],
                     ),
+                    SizedBox(height: 20,),
                     Column(
                         children: stationViewmodel.bikeStations.map((station) {
-                          return StationCard(bikeStation: station);
+                          return StationCard(bikeStation: station, favoriteStationViewmodel: favoriteStationViewmodel,);
                         },).toList()
                       ),
                   ],
