@@ -1,18 +1,23 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:t5_1/model/bike_station.dart';
+import 'package:t5_1/view/details_page.dart';
+import 'package:t5_1/viewmodel/favorite_station_viewmodel.dart';
 
 class StationCard extends StatelessWidget {
 
   final BikeStation bikeStation;
+  final FavoriteStationViewmodel favoriteStationViewmodel;
 
-  StationCard({super.key, required this.bikeStation});
+  StationCard({super.key, required this.bikeStation, required this.favoriteStationViewmodel});
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: GestureDetector(
-        onTap: () {},
+      child: InkWell(
+        onTap: () async {
+          await Navigator.push(context, MaterialPageRoute(builder: (_) => DetailsPage(bikeStation: bikeStation, favoriteStationViewmodel: favoriteStationViewmodel)));
+        },
         child: Padding(
           padding: EdgeInsets.all(20),
           child: Column(
@@ -114,5 +119,5 @@ class StationCard extends StatelessWidget {
         )
       )
     );
-  }  
+  }
 }
