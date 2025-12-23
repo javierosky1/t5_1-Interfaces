@@ -76,6 +76,7 @@ class FavoriteStationCard extends StatelessWidget {
                     child: PieChart(
                       PieChartData(
                         centerSpaceRadius: 0,
+                        startDegreeOffset: 270,
                         sections: [
                           PieChartSectionData(
                             value: bikeStation.fitBikesAvailable.toDouble(),
