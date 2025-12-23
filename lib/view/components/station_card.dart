@@ -26,6 +26,13 @@ class StationCard extends StatelessWidget {
                       fontSize: 17
                     ),
                   ),
+                  if (bikeStation.status != "IN_SERVICE" && bikeStation.status == "PLANNED") 
+                    Text("(En construción)",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold
+                      ),
+                    ),
+
                   Text("Capacidad: ${bikeStation.capacity}")
                 ],
               ),
@@ -44,7 +51,7 @@ class StationCard extends StatelessWidget {
                             x: bikeStation.numBikesAvailable,
                             barRods: [
                               BarChartRodData(
-                                toY: bikeStation.numBikesAvailable.toDouble()
+                                toY: bikeStation.numBikesAvailable != 0 ? bikeStation.numBikesAvailable.toDouble() : 0.1
                               )
                             ]
                           )
