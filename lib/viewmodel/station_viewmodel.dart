@@ -8,7 +8,9 @@ class StationViewmodel extends ChangeNotifier {
   List<BikeStation> _bikeStations = List.empty();
   List<BikeStation> get bikeStations => _bikeStations;
 
-  StationViewmodel(this._repository);
+  StationViewmodel(this._repository) {
+    getStations();
+  }
 
   void getStations() {
     var response = _repository.fetchAllBikeStations();
