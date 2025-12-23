@@ -23,6 +23,8 @@ class FavoriteStationViewmodel extends ChangeNotifier {
 
     _favoriteStationsIds = newFavoriteStations;
 
+    notifyListeners();
+
     updateStationsInfo();
 
   }
@@ -31,6 +33,11 @@ class FavoriteStationViewmodel extends ChangeNotifier {
 
     var response = _repository.fetchBikeStations(_favoriteStationsIds);
 
-    response.then((r) => _favoriteStations = r);
+    response.then(
+      (r) {
+        _favoriteStations = r; 
+        notifyListeners();
+      }
+    );
   }
 }
