@@ -25,6 +25,7 @@ class BikeStation {
   final String status;
   final int numDocksAvailable;
   final int numDocksDisabled;
+  final DateTime lastReported;
   final bool isInstalled;
   final bool isRenting;
   final bool isReturning;
@@ -58,6 +59,7 @@ class BikeStation {
     required this.status,
     required this.numDocksAvailable,
     required this.numDocksDisabled,
+    required this.lastReported,
     required this.isInstalled,
     required this.isRenting,
     required this.isReturning,
@@ -96,6 +98,7 @@ class BikeStation {
       status: status["status"].toString(),
       numDocksAvailable: int.parse(status["num_docks_available"].toString()),
       numDocksDisabled: int.parse(status["num_docks_disabled"].toString()),
+      lastReported: DateTime.fromMillisecondsSinceEpoch(status["last_reported"] * 1000),
       isInstalled: (status["is_installed"] as bool),
       isRenting: (status["is_renting"] as bool),
       isReturning: (status["is_returning"] as bool),
