@@ -29,6 +29,18 @@ class FavoriteStationViewmodel extends ChangeNotifier {
 
   }
 
+  void removeStation(int id) {
+    List<int> newFavoriteStations = List.from(_favoriteStationsIds);
+
+    newFavoriteStations.remove(id);
+
+    _favoriteStationsIds = newFavoriteStations;
+
+    notifyListeners();
+
+    updateStationsInfo();
+  }
+
   void updateStationsInfo() {
 
     var response = _repository.fetchBikeStations(_favoriteStationsIds);
