@@ -16,8 +16,6 @@ class DetailsPage extends StatelessWidget {
     required this.favoriteStationViewmodel,
   });
 
-  //TODO: Añadir y quitar de favoritos
-
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
