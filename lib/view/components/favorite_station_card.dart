@@ -104,7 +104,7 @@ class FavoriteStationCard extends StatelessWidget {
                           ),
                           PieChartSectionData(
                             value: bikeStation.efitBikesAvailable.toDouble() + bikeStation.boostBikesAvailable.toDouble(),
-                            title: "Electricas",
+                            title: "Eléctricas",
                             showTitle: true,
                             color: Colors.blue
                           )
