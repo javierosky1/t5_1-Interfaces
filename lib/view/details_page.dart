@@ -24,7 +24,21 @@ class DetailsPage extends StatelessWidget {
       animation: favoriteStationViewmodel,
       builder: (context, _) {
         return Scaffold(
-          appBar: AppBar(title: Text(bikeStation.name)),
+          appBar: AppBar(
+            title: Text(bikeStation.name),
+            actions: [
+              if (favoriteStationViewmodel.favoriteStationsIds.contains(bikeStation.id))
+                ElevatedButton(
+                  onPressed: () => favoriteStationViewmodel.removeStation(bikeStation.id), 
+                  child: Text("Eliminar de favoritos")
+                )
+              else
+                ElevatedButton(
+                  onPressed: () => favoriteStationViewmodel.addStation(bikeStation.id), 
+                  child: Text("Añadir a favoritos")
+                )
+            ],
+          ),
           body: Padding(
             padding: EdgeInsets.all(20),
             child: Column(
