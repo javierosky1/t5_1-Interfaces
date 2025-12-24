@@ -20,7 +20,18 @@ class HomePage extends StatelessWidget {
       animation: favoriteStationViewmodel,
       builder: (context, _) {
         return Scaffold(
-          appBar: AppBar(title: Text("T5.1")),
+          appBar: AppBar(
+            title: Text("T5.1"),
+            actions: [
+              ElevatedButton(
+                onPressed: () {
+                  stationViewmodel.getStations();
+                  favoriteStationViewmodel.updateStationsInfo();
+                }, 
+                child: Text("Actualizar datos")
+              )
+            ],
+          ),
           body: SingleChildScrollView(
             child: Padding(
               padding: EdgeInsets.all(20),
